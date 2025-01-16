@@ -6,8 +6,8 @@ import argparse
 parser = argparse.ArgumentParser(description="tool for extracting images from a helm chart")
 parser.add_argument("--chartname", type=str,required=True, help="Helm Chart Name")
 parser.add_argument("--repo", type=str ,required=True, help="Helm Chart Repository")
-parser.add_argument("--version", type=str, help="Helm Chart Version (optional)")
-parser.add_argument("--values", type=str, help="Helm Chart Version (optional)")
+parser.add_argument("--version", type=str, help="Helm Chart version (optional)")
+parser.add_argument("--values", type=str, help="Helm Chart values (optional)")
 
 
 # Argumente parsen
