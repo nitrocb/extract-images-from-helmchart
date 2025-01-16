@@ -22,10 +22,10 @@ else:
   helmCommand = f"helm template {args.chartname} --repo {args.repo}"
 
 if args.version:
-  helmCommand = f"{helmCommand} --version {args.version}"
+  helmCommand += f" --version {args.version}"
 
 if args.values:
-  helmCommand = helmCommand + f"--values {args.values}"
+  helmCommand += f" --values {args.values}"
 
 renderedCharts = subprocess.run(helmCommand, shell=True, capture_output=True).stdout.decode().strip()
 resources = renderedCharts.split("---")[1:]
