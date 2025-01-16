@@ -1,6 +1,7 @@
 import yaml
 import subprocess
 import argparse
+import re
 
 # Parser erstellen
 parser = argparse.ArgumentParser(description="tool for extracting images from a helm chart")
@@ -28,9 +29,13 @@ if args.values:
   helmCommand += f" --values {args.values}"
 
 renderedCharts = subprocess.run(helmCommand, shell=True, capture_output=True).stdout.decode().strip()
-resources = renderedCharts.split("---")[1:]
+resources = re.split(r'^\s*---\s*$', renderedCharts, flags=re.MULTILINE)[1:]
 
 for resource in resources:
+
+  if resource == "":
+    continue
+
   resourceObj = yaml.safe_load(resource)
   
   try: 
